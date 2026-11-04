@@ -1,0 +1,27 @@
+{
+  "name": "research-agent",
+  "description": "AI Research Agent that searches literature, summarizes papers, suggests hypotheses, drafts paper sections and manages citations using IBM Granite on watsonx.ai.",
+  "version": "1.0.0",
+  "repository": "https://github.com/<your-username>/research-agent",
+  "keywords": ["research-agent", "ibm-granite", "watsonx.ai", "ibm-cloud-lite", "streamlit", "nlp"],
+  "stack": "python",
+  "ibm_services": [
+    { "service": "watsonx.ai Runtime", "plan": "lite", "model": "ibm/granite-3-8b-instruct" },
+    { "service": "Cloud Object Storage", "plan": "lite", "optional": true },
+    { "service": "Code Engine", "plan": "free tier", "optional": true }
+  ],
+  "env": {
+    "WATSONX_API_KEY": { "description": "IBM Cloud API key", "required": true },
+    "WATSONX_PROJECT_ID": { "description": "watsonx.ai project ID", "required": true },
+    "WATSONX_URL": { "description": "watsonx.ai regional endpoint", "value": "https://us-south.ml.cloud.ibm.com" },
+    "GRANITE_MODEL_ID": { "description": "Granite model ID", "value": "ibm/granite-3-8b-instruct" },
+    "COS_API_KEY": { "required": false },
+    "COS_INSTANCE_CRN": { "required": false },
+    "COS_ENDPOINT": { "required": false },
+    "COS_BUCKET": { "required": false }
+  },
+  "scripts": {
+    "install": "pip install -r requirements.txt",
+    "start": "streamlit run app.py --server.port=8080 --server.address=0.0.0.0"
+  }
+}
